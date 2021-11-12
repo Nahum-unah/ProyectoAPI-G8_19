@@ -1,5 +1,7 @@
 var urlGetArticulos = 'http://127.0.0.7:90/G8_19/controller/articulos.php?op=GetArticulos';
 var urlPostArticulo = 'http://127.0.0.7:90/G8_19/controller/articulos.php?op=InsertArticulos';
+var urlPutArticulos = '';
+var urlPostArticulos = '';
 //NOTA: Siempre que vaya a probar el api rest abrir el xampp
 $(document).ready(function () {
 
