@@ -48,15 +48,15 @@ function CargarArticulos() {//funciona, pero el cundo llamo la funcion cargar no
 }
 function AgregarArticulo() {//funciona
     var datosArticulos = {
-        ID: $('#ID').val(),
-        DESCRIPCION: $('#DESCRIPCION').val(),
-        UNIDAD: $('#UNIDAD').val(),
-        COSTO: $('#COSTO').val(),
-        PRECIO: $('#PRECIO').val(),
-        APLICA_ISV: $('#APLICA_ISV').val(),
-        PORCENTAJE_ISV: $('#PORCENTAJE_ISV').val(),
-        ESTADO: $('#ESTADO').val(),
-        ID_SOCIO: $('#ID_SOCIO').val() 
+        ID: $('#id').val(),
+        DESCRIPCION: $('#descripcion').val(),
+        UNIDAD: $('#unidad').val(),
+        COSTO: $('#costo').val(),
+        PRECIO: $('#precio').val(),
+        APLICA_ISV: $('#aplica_isv').val(),
+        PORCENTAJE_ISV: $('#porcentaje_isv').val(),
+        ESTADO: $('#estado').val(),
+        ID_SOCIO: $('#id_socio').val() 
     };
     var datosArticulosjson = JSON.stringify(datosArticulos);
 
@@ -76,9 +76,9 @@ function AgregarArticulo() {//funciona
 }
 function Cargar(id) {//FUNCIONA
     var datosArticulos = {
-        ID: id
+        id: id
     };
-    var datosArticulosjson = JSON.stringify(datosArticulos)
+    var datosArticulosjson = JSON.stringify(datosArticulos);
  
         $.ajax({
             url: urlGetUno,
@@ -88,15 +88,15 @@ function Cargar(id) {//FUNCIONA
             contenType: 'application/json',
             success: function (response) {
                 var MiItems = response;
-                $('#ID').val(MiItems[0].ID);
-                $('#DESCRIPCION').val(MiItems[0].DESCRIPCION);
-                $('#UNIDAD').val(MiItems[0].UNIDAD);
-                $('#COSTO').val(MiItems[0].COSTO);
-                $('#PRECIO').val(MiItems[0].PRECIO);
-                $('#APLICA_ISV').val(MiItems[0].APLICA_ISV);
-                $('#PORCENTAJE_ISV').val(MiItems[0].PORCENTAJE_ISV);
-                $('#ESTADO').val(MiItems[0].ESTADO);
-                $('#ID_SOCIO').val(MiItems[0].ID_SOCIO);
+                $('#id').val(MiItems[0].ID);
+                $('#descripcion').val(MiItems[0].DESCRIPCION);
+                $('#unidad').val(MiItems[0].UNIDAD);
+                $('#costo').val(MiItems[0].COSTO);
+                $('#precio').val(MiItems[0].PRECIO);
+                $('#aplica_isv').val(MiItems[0].APLICA_ISV);
+                $('#porcentaje_isv').val(MiItems[0].PORCENTAJE_ISV);
+                $('#estado').val(MiItems[0].ESTADO);
+                $('#id_socio').val(MiItems[0].ID_SOCIO);
                 var btnactualizar = '<input type="submit" id="btn_actualizar" onclick="UpdateArticulos(' + MiItems[0].ID + ')"' +
                     'value="Actualizar Articulo" class="btn btn-success"></input>';
                 $('.button').html(btnactualizar);
@@ -106,14 +106,14 @@ function Cargar(id) {//FUNCIONA
 function UpdateArticulos(Id) {//funciona
     var datosArticulos = {
         ID: Id,
-        DESCRIPCION: $('#DESCRIPCION').val(),
-        UNIDAD: $('#UNIDAD').val(),
-        COSTO: $('#COSTO').val(),
-        PRECIO: $('#PRECIO').val(),
-        APLICA_ISV: $('#APLICA_ISV').val(),
-        PORCENTAJE_ISV: $('#PORCENTAJE_ISV').val(),
-        ESTADO: $('#ESTADO').val(),
-        ID_SOCIO: $('#ID_SOCIO').val()
+        DESCRIPCION: $('#descripcion').val(),
+        UNIDAD: $('#unidad').val(),
+        COSTO: $('#costo').val(),
+        PRECIO: $('#precio').val(),
+        APLICA_ISV: $('#aplica_isv').val(),
+        PORCENTAJE_ISV: $('#porcentaje_isv').val(),
+        ESTADO: $('#estado').val(),
+        ID_SOCIO: $('#id_socio').val()
     };
     var datosArticulosjson = JSON.stringify(datosArticulos);
 
@@ -132,7 +132,7 @@ function UpdateArticulos(Id) {//funciona
 }
 function EliminarArticulo(id) {// FUNCIONA
     var datosArticulos = {
-        ID: id
+        id: id
     };
     var datosArticulosjson = JSON.stringify(datosArticulos);
     $.ajax({
