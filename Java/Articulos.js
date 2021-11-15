@@ -10,8 +10,8 @@ $(document).ready(function () {
 
 
 });
-
 function CargarArticulos() {//funciona, pero el cundo llamo la funcion cargar no carga
+
     $.ajax({
         url: urlGetArticulos,
         type: 'GET',
@@ -39,12 +39,13 @@ function CargarArticulos() {//funciona, pero el cundo llamo la funcion cargar no
                     '</td>' +
                     '</tr>';
                 $('.articulos').html(Valores);
+
             };
         }
 
-    })
-};
+    });
 
+}
 function AgregarArticulo() {//funciona
     var datosArticulos = {
         ID: $('#ID').val(),
@@ -55,7 +56,7 @@ function AgregarArticulo() {//funciona
         APLICA_ISV: $('#APLICA_ISV').val(),
         PORCENTAJE_ISV: $('#PORCENTAJE_ISV').val(),
         ESTADO: $('#ESTADO').val(),
-        ID_SOCIO: $('#ID_SOCIO').val() //checar esta parte si funciona NOTA
+        ID_SOCIO: $('#ID_SOCIO').val() 
     };
     var datosArticulosjson = JSON.stringify(datosArticulos);
 
@@ -70,46 +71,41 @@ function AgregarArticulo() {//funciona
 
         }
     });
-    alert("Agrado con éxito");
+    alert("Agregado con éxito");
 
-}; //no lleva el ;
-//no funciona cargar
-function Cargar(ID) {//NO FUNCIONAAAAAAAAAAAA
-    //esta funcion llena los textbox el htm con los datos al dar clic en el boton editar
+}
+function Cargar(id) {//FUNCIONA
     var datosArticulos = {
-        ID: ID
+        ID: id
     };
-
-    var datosArticulosjson = JSON.stringify(datosArticulos);
-    $.ajax({
-        url: urlGetUno,
-        type: 'POST',
-        data: datosArticulosjson,
-        datatype: 'JSON',
-        contentType: 'application/json',
-        success: function (response) {
-            var MiItems = response;
-            $('#ID').val(MiItems[0].ID);
-            $('#DESCRIPCION').val(MiItems[2].DESCRIPCION);
-            $('#UNIDAD').val(MiItems[3].UNIDAD);
-            $('#COSTO').val(MiItems[4].COSTO);
-            $('#PRECIO').val(MiItems[5].PRECIO);
-            $('#APLICA_ISV').val(MiItems[6].APLICA_ISV);
-            $('#PORCENTAJE_ISV').val(MiItems[7], PORCENTAJE_ISV);
-            $('#ESTADO').val(MiItems[8].ESTADO);
-            $('#ID_SOCIO').val(MiItems[9].ID_SOCIO);
-            var btnactualizar = '<input type="submit" id="btn_actualizar" onclick="UpdateArticulos(' + MiItems[0].ID + ')"' +
-                'value="Actualizar Articulo" class="btn btn-success">';
-
-            $('.button').html(btnactualizar);
-        }
-    })
-    alert('Funciona?')
-};
-
-function UpdateArticulos(ID) {//funciona
+    var datosArticulosjson = JSON.stringify(datosArticulos)
+ 
+        $.ajax({
+            url: urlGetUno,
+            type: 'POST',
+            data: datosArticulosjson,
+            datatype: 'JSON',
+            contenType: 'application/json',
+            success: function (response) {
+                var MiItems = response;
+                $('#ID').val(MiItems[0].ID);
+                $('#DESCRIPCION').val(MiItems[0].DESCRIPCION);
+                $('#UNIDAD').val(MiItems[0].UNIDAD);
+                $('#COSTO').val(MiItems[0].COSTO);
+                $('#PRECIO').val(MiItems[0].PRECIO);
+                $('#APLICA_ISV').val(MiItems[0].APLICA_ISV);
+                $('#PORCENTAJE_ISV').val(MiItems[0].PORCENTAJE_ISV);
+                $('#ESTADO').val(MiItems[0].ESTADO);
+                $('#ID_SOCIO').val(MiItems[0].ID_SOCIO);
+                var btnactualizar = '<input type="submit" id="btn_actualizar" onclick="UpdateArticulos(' + MiItems[0].ID + ')"' +
+                    'value="Actualizar Articulo" class="btn btn-success"></input>';
+                $('.button').html(btnactualizar);
+            }
+        });  
+}
+function UpdateArticulos(Id) {//funciona
     var datosArticulos = {
-        ID: ID,
+        ID: Id,
         DESCRIPCION: $('#DESCRIPCION').val(),
         UNIDAD: $('#UNIDAD').val(),
         COSTO: $('#COSTO').val(),
@@ -117,13 +113,13 @@ function UpdateArticulos(ID) {//funciona
         APLICA_ISV: $('#APLICA_ISV').val(),
         PORCENTAJE_ISV: $('#PORCENTAJE_ISV').val(),
         ESTADO: $('#ESTADO').val(),
-        ID_SOCIO: $('#ID_SOCIO').val() //checar esta parte si funciona NOTA
+        ID_SOCIO: $('#ID_SOCIO').val()
     };
     var datosArticulosjson = JSON.stringify(datosArticulos);
 
     $.ajax({
         url: urlPutArticulos,
-        type: 'POST',
+        type: 'PUT',
         data: datosArticulosjson,
         datatype: 'JSON',
         contenType: 'application/json',
@@ -133,23 +129,22 @@ function UpdateArticulos(ID) {//funciona
         }
     });
     alert("Actualizado con éxito");
-};
-
-function EliminarArticulo(ID) {//NO FUNCIONA
+}
+function EliminarArticulo(id) {// FUNCIONA
     var datosArticulos = {
-        Id: ID
+        ID: id
     };
     var datosArticulosjson = JSON.stringify(datosArticulos);
     $.ajax({
         url: urlDeleteArticulos,
-        type: 'POST',
+        type: 'DELETE',
         data: datosArticulosjson,
         datatype: 'JSON',
         contentType: 'application/json',
         success: function (response) {
             console.log(response);
-
         }
     });
-    alert("Borrado con éxito");
-};
+    alert("Id: " + id + ", borrado con éxito");
+}
+//----------------------------------------------FIN---------------------------------------------------//
