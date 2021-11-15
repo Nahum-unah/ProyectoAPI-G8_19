@@ -2,7 +2,7 @@ var urlGetArticulos = 'http://127.0.0.7:90/G8_19/controller/articulos.php?op=Get
 var urlPostArticulo = 'http://127.0.0.7:90/G8_19/controller/articulos.php?op=InsertArticulos';
 var urlPutArticulos = 'http://127.0.0.7:90/G8_19/controller/articulos.php?op=Update';
 var urlDeleteArticulos = 'http://127.0.0.7:90/G8_19/controller/articulos.php?op=Delete';
-var urlGetUno = 'http://127.0.0.7:90/G8_19/controller/articulos.php?op=GetArticuloID'; //hacer un textbox de busqueda...
+var urlGetUno = 'http://127.0.0.7:90/G8_19/controller/articulos.php?op=GetArticuloID'; 
 //NOTA: Siempre que vaya a probar el api rest abrir el xampp
 $(document).ready(function () {
 
@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 
 });
-function CargarArticulos() {//funciona, pero el cundo llamo la funcion cargar no carga
+function CargarArticulos() {//funciona
 
     $.ajax({
         url: urlGetArticulos,
@@ -21,7 +21,7 @@ function CargarArticulos() {//funciona, pero el cundo llamo la funcion cargar no
             var Valores = ''; //deposito los valores de response
 
             for (i = 0; i < MiItems.length; i++) {
-                Valores += '<tr>' +
+                Valores += '<tr class="table-dark">' +
                     '<td>' + MiItems[i].ID + '</td>' +
                     '<td>' + MiItems[i].DESCRIPCION + '</td>' +
                     '<td>' + MiItems[i].UNIDAD + '</td>' +
@@ -32,10 +32,10 @@ function CargarArticulos() {//funciona, pero el cundo llamo la funcion cargar no
                     '<td>' + MiItems[i].ESTADO + '</td>' +
                     '<td>' + MiItems[i].ID_SOCIO + '</td>' +
                     '<td >' +
-                    '<Button class="btn btn-warning" onclick="Cargar(' + MiItems[i].ID + ')">Editar</Button>' +
+                    '<Button class="btn btn-outline-warning" onclick="Cargar(' + MiItems[i].ID + ')">Editar</Button>' +
                     '</td>' +
                     '<td >' +
-                    '<Button class="btn btn-danger" onclick="EliminarArticulo(' + MiItems[i].ID + ')">Eliminar</Button>' +
+                    '<Button class="btn btn-outline-danger" onclick="EliminarArticulo(' + MiItems[i].ID + ')">Eliminar</Button>' +
                     '</td>' +
                     '</tr>';
                 $('.articulos').html(Valores);
@@ -98,7 +98,7 @@ function Cargar(id) {//FUNCIONA
                 $('#estado').val(MiItems[0].ESTADO);
                 $('#id_socio').val(MiItems[0].ID_SOCIO);
                 var btnactualizar = '<input type="submit" id="btn_actualizar" onclick="UpdateArticulos(' + MiItems[0].ID + ')"' +
-                    'value="Actualizar Articulo" class="btn btn-success"></input>';
+                    'value="Actualizar Articulo" class="btn btn-warning"></input>';
                 $('.button').html(btnactualizar);
             }
         });  

@@ -1,0 +1,16 @@
+
+  body {
+    background-color:darkslategrey;
+    color: rgb(255, 255, 255); 
+  }
+  @media screen and (prefers-color-scheme: light) {
+    body {
+      background-color: white;
+      color: black;
+    }
+    
+  }
+  .form-control{
+    background-color:rgb(71, 192, 192);
+      }
+  
